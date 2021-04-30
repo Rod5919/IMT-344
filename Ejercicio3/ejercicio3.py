@@ -25,9 +25,6 @@ import cv2
 >NOTE: Before running notebook, mount drive with your own kaggle.json file
 """
 
-import os
-os.environ['KAGGLE_CONFIG_DIR'] = "drive/My Drive/Kaggle"
-
 """# Preview images"""
 
 filename = '100.png' # You can pick a file from 001.png to 366.png
@@ -106,9 +103,10 @@ plt.bar(['Contaminated','Not contaminated'], [list(df['Contaminated']).count(1),
 """# Prediction"""
 
 while(1):
-  num = int(input('tpe a numer from 0 to 365, -1 to stop')) #@param {type:"slider", min:0, max:365, step:1}
+  num = int(input('tpe a numer from 0 to 365, -1 to stop: ')) #@param {type:"slider", min:0, max:365, step:1}
 
   if num < 0:
     break
   plt.imshow(cv2.imread("images/"+files[num]))
   plt.title({True:'Contaminated', False:'Not contaminated'}[bacterias_res(files[num])>20])
+  plt.show()
